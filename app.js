@@ -17,6 +17,8 @@ mongoose.connect(process.env.MONGODB_URI, { dbName: 'redux-backend'} )
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users/users');
+const productRouter = require('./routes/products');
+// var productsRouter = require('./routes/users/products');
 
 var app = express();
 
@@ -35,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/products', productRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,7 +52,15 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+  if (req.originalUrl.startsWith('/api/')) {
+    res.json({ error: err.message });
+  } else {
   res.render('error');
+  }
+});
+
+app.post('/api/products',(req, res, next) => {
+  const product = req.body
 });
 
 module.exports = app;

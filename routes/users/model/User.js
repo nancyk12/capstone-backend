@@ -7,7 +7,12 @@ const userSchema = new mongoose.Schema({
     },
     firstname: String,
     lastname: String,
-    password: String
+    password: String,
+    isAdmin: {
+        type: Boolean,
+        default: false, 
+        required: true
+    }
 })
 
 module.exports = mongoose.model('User', userSchema)
