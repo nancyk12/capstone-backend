@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGODB_URI, { dbName: 'redux-backend'} )
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users/users');
 const productRouter = require('./routes/products');
-// var productsRouter = require('./routes/users/products');
+const favoritesRouter = require('./routes/favorites');
 
 var app = express();
 
@@ -38,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/products', productRouter);
+app.use('/api/favorites', favoritesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
