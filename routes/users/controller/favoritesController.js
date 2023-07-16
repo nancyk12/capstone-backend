@@ -1,5 +1,30 @@
 const Favorite = require('../model/Favorite');
 
+const addFavorite = async (req, res) => {
+    try {
+      const { animal } = req.body;
+      // Create a new favorite entry in the database
+      const favorite = new Favorite({
+        animal,
+      });
+      await favorite.save();
+      res.status(201).json(favorite);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  };
+  
+  module.exports = {
+    addFavorite,
+  };
+
+  
+  
+  
+  
+  
+
 const favoritesController = {
   getAllFavorites: async (req, res) => {
     try {
