@@ -20,6 +20,7 @@ var usersRouter = require('./routes/users/users');
 const productRouter = require('./routes/products');
 const favoritesRouter = require('./routes/favorites');
 const courseRouter = require('./routes/courses');
+const blogRouter = require('./routes/blogs');
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/products', productRouter);
 app.use('/api/favorites', favoritesRouter);
 app.use('/api/courses', courseRouter);
+app.use("/api/blogs", blogRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
