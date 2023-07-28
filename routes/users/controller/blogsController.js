@@ -15,7 +15,7 @@ async function createBlog(req, res){
             title: req.body.title,
             author: req.body.author,
             text: req.body.text,
-            category: req.body.category,
+            // category: req.body.category,
         });
         const response = await newBlog.save();
         res.json({ success: true, addedBlog: response});
@@ -28,10 +28,10 @@ async function createBlog(req, res){
 async function getOneBlogById(req, res){
     try{
         //console.log(req.params);
-        const { idToGet } =  req.params;
-        console.log(idToGet);
-        const foundBlog = await Blog.findOneAndDelete({ id: idToGet});
-        res.json({success: true, blogs:foundBlog});
+        const { blogId } =  req.params;
+        console.log(blogId);
+        const foundBlog = await Blog.findOne({ _id: blogId});
+        res.json({success: true, singleBlog:foundBlog});
 
     }catch (error) {
         console.log(error);
@@ -44,7 +44,7 @@ async function updateOneBlogById(req, res) {
 		const { idToUpdate } = req.params;
 
 		const updatedBlog = await Blog.findOneAndUpdate(
-			{ id: idToUpdate },
+			{ id:idToUpdate },
 			req.body
 		);
 		// const updatedBlog = Blog.updateOne({id: req.params.id}, req.body);

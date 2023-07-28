@@ -76,5 +76,14 @@ app.post('/api/courses',(req, res, next) => {
   const course = req.body
 });
 
+app.post('/api/blogs',(req, res, next) => {
+  const blog = req.body
+});
+
+app.get('/api/blogs/get-one-blog/:id',(req, res, next) => {
+  const blog = req.body
+});
+
+
 
 module.exports = app;

@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+blogController = require ('./users/controller/blogsController')
+const Blog = require('./users/model/Blog');
+
 
 const {getAllBlogs, createBlog, getOneBlogById, updateOneBlogById, deleteOneBlogById} = require("./users/controller/blogsController")
 //require("../controllers/blogsController");
@@ -22,7 +25,8 @@ router.get("/", (req, res) => {
 //all routes coming in from the regular browser url are get routes.
 router.get("/all-blogs", getAllBlogs);
 router.post("/create-blog", createBlog);
-router.get("/get-one-blog/:idToGet", getOneBlogById);
+router.get("/get-one-blog/:id", getOneBlogById);
+// router.get('/:id', blogController.getBlogById);
 router.put("/update-by-id/:idToUpdate", updateOneBlogById);
 router.delete("/delete-by-id/:idToDelete", deleteOneBlogById)
 
