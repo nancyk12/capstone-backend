@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const productController = require('./users/controller/productController');
 const Product = require('./users/model/Product');
+const cloudinary = require("../utils/cloudinary");
 
 // Get all products
 router.get('/all-products', productController.getProducts);

@@ -9,8 +9,8 @@ const blogSchema = new mongoose.Schema({
     author: { type: String, require: true },
     createAt: { type: Date, default: Date.now },
     text: { type: String, require: true },
+    image: {type: Object, required: true },
     id: { type: String, default: uuidv4 },
-
 });
 const Blog = mongoose.model("blog", blogSchema);
 
