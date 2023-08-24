@@ -110,6 +110,7 @@ module.exports = {
             email: foundUser.email,
             firstname: foundUser.firstname,
             lastname: foundUser.lastname,
+            isAdmin: foundUser.isAdmin,
             message: "Successful Token Login!!"
         })
 

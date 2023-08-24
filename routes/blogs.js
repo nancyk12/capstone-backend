@@ -1,5 +1,4 @@
 const express = require("express");
-const cloudinary = require("../utils/cloudinary")
 const router = express.Router();
 blogController = require ('./users/controller/blogsController')
 const Blog = require('./users/model/Blog');
@@ -9,46 +8,9 @@ const {getAllBlogs, createBlog, getOneBlogById, updateOneBlogById, deleteOneBlog
 //require("../controllers/blogsController");
 
 //callback function
-
-//Create
-router.post("/", async(req, res) => {
-    const { title, author, createAt, text, image, id } = req.body;
-
-    try {
-        if (image) {
-            uploadedResponse = await cloudinary.uploader.upload(image, {
-                upload_present: "pet-blog",
-            });
-
-            if (uploadedResponse) {
-              const blog = new Blog ({ 
-                title, 
-                author, 
-                createAt, 
-                text, 
-                image: uploadedResponse, 
-                id, 
-            });
-            const savedBlog = await blog.save();
-            res.status(200).send(savedBlog);
-            } 
-          }
-        } catch (error) {
-            console.log(error);
-            res.status(500).send(error);
-        }
-    });
-
-router.get("/", async(req, res) => {
+router.get("/", (req, res) => {
     //res.send response with a string
     res.send("hello from blogs");
-    try{
-        const blogs = await Blog.find()
-        res.status(200).send(blogs)
-    } catch(error){
-        console.log(error);
-        res.status(500).send(error);
-    }
 });
 
 //MVC: Model, Controller, View (models, views, controllers folders)

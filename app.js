@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors')
 require('dotenv').config()
+const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose')
 
@@ -36,6 +37,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(bodyParser.json({limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, perameterLimit: 100000, limit: '500mb' }));
+
 
 app.use('/api', indexRouter);
 app.use('/api/users', usersRouter);
